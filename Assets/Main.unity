@@ -452,7 +452,8 @@ MonoBehaviour:
   _source: {fileID: 1916546230}
   _resources: {fileID: 11400000, guid: c0532b829d2dd49d99fa8e8df757816e, type: 2}
   _shader: {fileID: 4800000, guid: e24bed30276cc43de8805bf390b9f559, type: 3}
-  _output: {fileID: 8400000, guid: 437213ff54cc1c7498ab20825bce6a98, type: 2}
+  _filterOutput: {fileID: 8400000, guid: 437213ff54cc1c7498ab20825bce6a98, type: 2}
+  _maskOutput: {fileID: 8400000, guid: 21119c6741aac4a25a21338e7f7dcaca, type: 2}
 --- !u!1 &588342193
 GameObject:
   m_ObjectHideFlags: 0
