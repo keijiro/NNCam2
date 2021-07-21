@@ -16,5 +16,5 @@ float4 FullScreenPass(Varyings varyings) : SV_Target
     // Color samples in sRGB
     float4 c0 = SampleColorSRGB(pcs + uint2(0, 0));
 
-    return float4(FastSRGBToLinear(lerp(c0.rgb, 1 - c0.rgb, c0.a) * (1 - _TestValue)), 1);
+    return float4(FastSRGBToLinear(lerp(c0.rgb, 1 - c0.rgb, c0.a)), 1);
 }

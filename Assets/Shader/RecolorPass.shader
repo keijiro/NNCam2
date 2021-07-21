@@ -1,4 +1,4 @@
-Shader "FullScreen/NNCamRecolor"
+Shader "FullScreen/NNCam2/Recolor Pass"
 {
     SubShader
     {
@@ -10,7 +10,7 @@ Shader "FullScreen/NNCamRecolor"
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment FullScreenPass
-            #include "NNCamRecolor.hlsl"
+            #include "RecolorPass.hlsl"
             ENDHLSL
         }
     }

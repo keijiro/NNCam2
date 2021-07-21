@@ -1,4 +1,4 @@
-Shader "FullScreen/NNCamBackground"
+Shader "FullScreen/NNCam2/Background Pass"
 {
     Properties
     {
@@ -13,7 +13,7 @@ Shader "FullScreen/NNCamBackground"
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment FullScreenPass
-            #include "NNCamBackground.hlsl"
+            #include "BackgroundPass.hlsl"
             ENDHLSL
         }
     }

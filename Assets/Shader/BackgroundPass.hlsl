@@ -7,7 +7,6 @@ void FullScreenPass(Varyings varyings,
                     out float outDepth : SV_Depth)
 {
     float2 uv = (varyings.positionCS.xy + float2(0.5, 0.5)) * _ScreenSize.zw;
-    float3 rgb = tex2D(_MainTexture, uv).rgb;
-    outColor = float4(rgb, uv.x > 0.5);
+    outColor = tex2D(_MainTexture, uv);
     outDepth = 0;
 }
