@@ -3,7 +3,7 @@ using UnityEngine.Rendering.HighDefinition;
 
 namespace NNCam2 {
 
-sealed class BodyPixOverlayController : MonoBehaviour
+public sealed class BodyPixOverlayController : MonoBehaviour
 {
     #region Editable attributes
 
@@ -14,18 +14,12 @@ sealed class BodyPixOverlayController : MonoBehaviour
 
     #endregion
 
-    #region Private variables and objects
+    #region Public properties and methods
 
-    float _backOpacity = 1;
-    float _frontOpacity = 1;
+    public float BackgroundOpacity { get; set; }
+    public float ForegroundOpacity { get; set; }
 
-    Material _material;
-
-    #endregion
-
-    #region Random palette generator
-
-    void ShufflePalette()
+    public void ShufflePalette()
     {
         var h1 = Random.value;
         var h2 = (h1 + 0.333f) % 1;
@@ -62,6 +56,8 @@ sealed class BodyPixOverlayController : MonoBehaviour
 
     #region MonoBehaviour implementation
 
+    Material _material;
+
     void Start()
     {
         // Get a reference to the FullScreenCustomPass object.
@@ -80,7 +76,7 @@ sealed class BodyPixOverlayController : MonoBehaviour
     void LateUpdate()
     {
         // Fill parameter update
-        var fillParams = new Vector3(_backOpacity, _frontOpacity, _dithering);
+        var fillParams = new Vector3(BackgroundOpacity, ForegroundOpacity, _dithering);
         _material.SetVector("_FillParams", fillParams);
 
         // Line parameter update
