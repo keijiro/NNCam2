@@ -1,4 +1,4 @@
-Shader "FullScreen/NNCam2/Background Pass"
+Shader "FullScreen/NNCam2/BodyPix Injection Pass"
 {
     Properties
     {
@@ -8,12 +8,12 @@ Shader "FullScreen/NNCam2/Background Pass"
     {
         Pass
         {
-            Name "Background"
+            Name "BodyPix Injection"
             Cull Off ZWrite Off ZTest LEqual
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment FullScreenPass
-            #include "BackgroundPass.hlsl"
+            #include "BodyPixInjectionPass.hlsl"
             ENDHLSL
         }
     }

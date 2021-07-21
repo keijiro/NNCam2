@@ -1,16 +1,16 @@
-Shader "FullScreen/NNCam2/Recolor Pass"
+Shader "FullScreen/NNCam2/BodyPix Overlay Pass"
 {
     SubShader
     {
         Pass
         {
-            Name "Recolor"
+            Name "BodyPix Overlay"
             Cull Off ZWrite Off ZTest Always
             Blend SrcAlpha OneMinusSrcAlpha
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment FullScreenPass
-            #include "RecolorPass.hlsl"
+            #include "BodyPixOverlayPass.hlsl"
             ENDHLSL
         }
     }

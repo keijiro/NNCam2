@@ -1,4 +1,4 @@
-Shader "Hidden/NNCam2/BodyPix Effector"
+Shader "Hidden/NNCam2/BodyPix Filter"
 {
     SubShader
     {
@@ -8,7 +8,7 @@ Shader "Hidden/NNCam2/BodyPix Effector"
             HLSLPROGRAM
             #pragma vertex Vertex
             #pragma fragment Fragment
-            #include "BodyPixEffect.hlsl"
+            #include "BodyPixFilter.hlsl"
             ENDHLSL
         }
     }

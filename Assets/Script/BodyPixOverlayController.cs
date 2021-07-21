@@ -3,7 +3,7 @@ using UnityEngine.Rendering.HighDefinition;
 
 namespace NNCam2 {
 
-sealed class RecolorController : MonoBehaviour
+sealed class BodyPixOverlayController : MonoBehaviour
 {
     void Start()
     {

@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 504078939}
   - component: {fileID: 504078940}
   m_Layer: 0
-  m_Name: BodyPix
+  m_Name: Filter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 588342195}
   - component: {fileID: 588342196}
   m_Layer: 0
-  m_Name: Recolor
+  m_Name: Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +510,7 @@ MonoBehaviour:
     - rid: 2468250133295005698
       type: {class: FullScreenCustomPass, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
-        m_Name: Recolor
+        m_Name: Overlay
         enabled: 1
         targetColorBuffer: 0
         targetDepthBuffer: 2
@@ -519,7 +519,7 @@ MonoBehaviour:
         m_Version: 0
         fullscreenPassMaterial: {fileID: 2100000, guid: 3d353d04265a394409c30a2c97308dc5, type: 2}
         materialPassIndex: 0
-        materialPassName: Recolor
+        materialPassName: BodyPix Overlay
         fetchColorBuffer: 0
 --- !u!114 &588342196
 MonoBehaviour:
@@ -543,7 +543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929455293}
   m_Layer: 0
-  m_Name: Custom Pass
+  m_Name: BodyPix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 1916546231}
   - component: {fileID: 1916546230}
   m_Layer: 0
-  m_Name: Video Input
+  m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 1955026411}
   - component: {fileID: 1955026410}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Injection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -664,7 +664,7 @@ MonoBehaviour:
     - rid: 2468250133295005696
       type: {class: FullScreenCustomPass, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
-        m_Name: Background
+        m_Name: Injection
         enabled: 1
         targetColorBuffer: 0
         targetDepthBuffer: 0
@@ -673,7 +673,7 @@ MonoBehaviour:
         m_Version: 0
         fullscreenPassMaterial: {fileID: 2100000, guid: 3a284bbe55daa974b97796d25991e728, type: 2}
         materialPassIndex: 0
-        materialPassName: Background
+        materialPassName: BodyPix Injection
         fetchColorBuffer: 0
 --- !u!4 &1955026411
 Transform:

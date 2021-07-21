@@ -4,7 +4,7 @@ using BodyPix;
 
 namespace NNCam2 {
 
-sealed class BodyPixEffector : MonoBehaviour
+sealed class BodyPixFilter : MonoBehaviour
 {
     [SerializeField] ImageSource _source = null;
     [SerializeField] ResourceSet _resources = null;
