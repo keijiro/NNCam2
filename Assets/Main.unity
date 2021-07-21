@@ -415,6 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504078939}
   - component: {fileID: 504078940}
+  - component: {fileID: 504078941}
   m_Layer: 0
   m_Name: Filter
   m_TagString: Untagged
@@ -444,7 +445,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504078938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1be34f8322e0847a8b41d7b97b9e7dc3, type: 3}
   m_Name: 
@@ -453,6 +454,27 @@ MonoBehaviour:
   _mask: {fileID: 8400000, guid: 21119c6741aac4a25a21338e7f7dcaca, type: 2}
   _shader: {fileID: 4800000, guid: e24bed30276cc43de8805bf390b9f559, type: 3}
   _output: {fileID: 8400000, guid: 437213ff54cc1c7498ab20825bce6a98, type: 2}
+--- !u!114 &504078941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504078938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cce449ab8c24b7aa5e63d51ee417c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _source: {fileID: 1916546230}
+  _mask: {fileID: 8400000, guid: 21119c6741aac4a25a21338e7f7dcaca, type: 2}
+  _shader: {fileID: 4800000, guid: 8a1f48f6060af497e8b4adaab670b296, type: 3}
+  _output: {fileID: 8400000, guid: 437213ff54cc1c7498ab20825bce6a98, type: 2}
+  _feedbackLength: 3
+  _feedbackDecay: 1
+  _noiseFrequency: 1
+  _noiseSpeed: 1
+  _noiseAmount: 1
 --- !u!1 &588342193
 GameObject:
   m_ObjectHideFlags: 0

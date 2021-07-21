@@ -1,4 +1,4 @@
-Shader "Hidden/NNCam2/BodyPix Filter Thuru"
+Shader "Hidden/NNCam2/BodyPix Filter Feedback"
 {
     SubShader
     {
@@ -8,7 +8,7 @@ Shader "Hidden/NNCam2/BodyPix Filter Thuru"
             HLSLPROGRAM
             #pragma vertex VertexFullScreenTriangle
             #pragma fragment Fragment
-            #include "BodyPixFilterThru.hlsl"
+            #include "BodyPixFilterFeedback.hlsl"
             ENDHLSL
         }
     }
