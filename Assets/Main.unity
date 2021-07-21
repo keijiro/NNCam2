@@ -555,6 +555,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ff0e41d0136b345a0ff42c3d2f3684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dithering: 0.5
+  _lineColor: {r: 1, g: 1, b: 1, a: 1}
+  _lineThreshold: 0.25
+  _lineContrast: 2
+  _backOpacity: 1
+  _frontOpacity: 1
 --- !u!1 &929455292
 GameObject:
   m_ObjectHideFlags: 0
