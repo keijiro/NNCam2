@@ -1,44 +1,51 @@
 #include "Packages/jp.keijiro.bodypix/Shader/Common.hlsl"
 
 sampler2D _SourceTexture;
+sampler2D _MaskTexture;
 
-texture2D _MaskTexture;
-float4 _MaskTexture_TexelSize;
+texture2D _BodyPixTexture;
+float4 _BodyPixTexture_TexelSize;
 
-float3 HueToRGB(float h)
-{
-    h = frac(saturate(h)) * 6 - 2;
-    float3 c = saturate(float3(abs(h - 1) - 1, 2 - abs(h), 2 - abs(h - 2)));
-    return c;
-}
-
-void Vertex(float4 position : POSITION,
-            float2 texCoord : TEXCOORD,
+void Vertex(uint vid : SV_VertexID,
             out float4 outPosition : SV_Position,
             out float2 outTexCoord : TEXCOORD)
 {
-    float2 p = position.xy * float2(2, -2) + float2(-1, 1);
-    outPosition = float4(p, 1, 1);
-    outTexCoord = texCoord;
+    float x = (vid & 1) * 2;
+    float y = (vid > 1) * 2;
+    outPosition = float4(x * 2 - 1, 1 - y * 2, 1, 1);
+    outTexCoord = float2(x, y);
 }
 
-float4 Fragment(float4 position : SV_Position,
-                float2 texCoord : TEXCOORD) : SV_Target
+float4 FragmentMask(float4 position : SV_Position,
+                    float2 texCoord : TEXCOORD) : SV_Target
 {
-    BodyPix_Mask mask =
-      BodyPix_SampleMask(texCoord, _MaskTexture, _MaskTexture_TexelSize.zw);
+    BodyPix_Mask mask = BodyPix_SampleMask
+      (texCoord, _BodyPixTexture, _BodyPixTexture_TexelSize.zw);
 
-    float3 acc = 0;
-    for (uint part = 0; part < BODYPIX_PART_COUNT; part++)
-    {
-        float score = BodyPix_EvalPart(mask, part);
-        score = smoothstep(0.47, 0.57, score);
-        acc += HueToRGB((float)part / BODYPIX_PART_COUNT) * score;
-    }
+    // Head
+    float head = max(BodyPix_EvalPart(mask, 0), BodyPix_EvalPart(mask, 1));
 
+    // Arm
+    float arm = 0;
+    for (uint i = 2; i < 12; i++)
+        arm = max(arm, BodyPix_EvalPart(mask, i));
+
+    // Body
+    float body = 0;
+    for (uint i = 12; i < 14; i++)
+        body = max(body, BodyPix_EvalPart(mask, i));
+
+    // Person
     float alpha = BodyPix_EvalSegmentation(mask);
-    alpha = smoothstep(0.47, 0.57, alpha);
 
-    float3 rgb = tex2D(_SourceTexture, texCoord).rgb;
-    return float4(lerp(rgb, acc, alpha), 1 - alpha);
+    // Combined output
+    return smoothstep(0.47, 0.57, float4(head, body, arm, 1) * alpha);
+}
+
+float4 FragmentFilter(float4 position : SV_Position,
+                      float2 texCoord : TEXCOORD) : SV_Target
+{
+    float4 c = tex2D(_SourceTexture, texCoord);
+    float4 m = tex2D(_MaskTexture, texCoord);
+    return float4(c.rgb, m.a);
 }
