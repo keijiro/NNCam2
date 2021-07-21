@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 04d5e8f3a41e1437eb7bda62d938667c
+guid: 1be34f8322e0847a8b41d7b97b9e7dc3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - _source: {instanceID: 0}
-  - _resources: {fileID: 11400000, guid: c0532b829d2dd49d99fa8e8df757816e, type: 2}
+  - _mask: {instanceID: 0}
   - _shader: {fileID: 4800000, guid: e24bed30276cc43de8805bf390b9f559, type: 3}
   - _output: {fileID: 8400000, guid: 437213ff54cc1c7498ab20825bce6a98, type: 2}
   executionOrder: 0

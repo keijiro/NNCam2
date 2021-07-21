@@ -4,15 +4,13 @@ using BodyPix;
 
 namespace NNCam2 {
 
-sealed class BodyPixFilter : MonoBehaviour
+sealed class BodyPixInput : MonoBehaviour
 {
     [SerializeField] ImageSource _source = null;
     [SerializeField] ResourceSet _resources = null;
     [SerializeField] Shader _shader = null;
-    [SerializeField] RenderTexture _filterOutput = null;
-    [SerializeField] RenderTexture _maskOutput = null;
+    [SerializeField] RenderTexture _output = null;
 
-    RenderBuffer[] _mrt = new RenderBuffer[2];
     BodyPixRuntime _bodyPix;
     Material _material;
 
@@ -34,13 +32,7 @@ sealed class BodyPixFilter : MonoBehaviour
 
         _material.SetTexture("_BodyPixTexture", _bodyPix.Mask);
         _material.SetPass(0);
-        Graphics.SetRenderTarget(_maskOutput);
-        Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
-
-        _material.SetTexture("_SourceTexture", _source.Texture);
-        _material.SetTexture("_MaskTexture", _maskOutput);
-        Graphics.SetRenderTarget(_filterOutput);
-        _material.SetPass(1);
+        Graphics.SetRenderTarget(_output);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
     }
 }
