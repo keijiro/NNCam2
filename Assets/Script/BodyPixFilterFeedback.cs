@@ -41,7 +41,7 @@ sealed class BodyPixFilterFeedback : MonoBehaviour
 
     #region Private members
 
-    Vector2 FeedbackParamsVector
+    Vector4 FeedbackParamsVector
       => new Vector4(_feedbackLength, _feedbackDecay / 100,
                      (float)_buffer.rt1.width / _buffer.rt1.height, Time.time);
 
