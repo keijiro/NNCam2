@@ -10,7 +10,7 @@
   ],
   "dependencies": {
     "com.unity.render-pipelines.high-definition": "12.0.0",
-    "jp.keijiro.bodypix": "1.0.1",
+    "jp.keijiro.bodypix": "1.0.2",
     "jp.keijiro.klak.testtools": "1.0.2",
     "jp.keijiro.klak.visualscripting": "1.0.2",
     "jp.keijiro.noiseshader": "2.0.0",

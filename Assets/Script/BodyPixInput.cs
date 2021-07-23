@@ -4,12 +4,14 @@ using BodyPix;
 
 namespace NNCam2 {
 
-sealed class BodyPixInput : MonoBehaviour
+public sealed class BodyPixInput : MonoBehaviour
 {
     [SerializeField] ImageSource _source = null;
     [SerializeField] ResourceSet _resources = null;
     [SerializeField] Shader _shader = null;
     [SerializeField] RenderTexture _output = null;
+
+    public GraphicsBuffer KeypointBuffer => _bodyPix.Keypoints;
 
     BodyPixRuntime _bodyPix;
     Material _material;
