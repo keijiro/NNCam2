@@ -10,6 +10,7 @@ static class ShaderID
     public static readonly int MainTexture = Shader.PropertyToID("_MainTexture");
     public static readonly int MaskTexture = Shader.PropertyToID("_MaskTexture");
     public static readonly int NoiseParams = Shader.PropertyToID("_NoiseParams");
+    public static readonly int Opacity = Shader.PropertyToID("_Opacity");
     public static readonly int SourceTexture = Shader.PropertyToID("_SourceTexture");
 }
 
