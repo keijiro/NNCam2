@@ -73,13 +73,13 @@ sealed class BodyPixFilterFeedback : MonoBehaviour
     void LateUpdate()
     {
         // Effector shader
+        Graphics.SetRenderTarget(_buffer.rt2);
         _material.SetTexture(ShaderID.SourceTexture, _source.Texture);
         _material.SetTexture(ShaderID.FeedbackTexture, _buffer.rt1);
         _material.SetTexture(ShaderID.MaskTexture, _mask);
         _material.SetVector(ShaderID.FeedbackParams, FeedbackParamsVector);
         _material.SetVector(ShaderID.NoiseParams, NoiseParamsVector);
         _material.SetPass(0);
-        Graphics.SetRenderTarget(_buffer.rt2);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
 
         Graphics.Blit(_buffer.rt2, _output);

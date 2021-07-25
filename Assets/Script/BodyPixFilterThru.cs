@@ -26,10 +26,10 @@ sealed class BodyPixFilterThru : MonoBehaviour
 
     void LateUpdate()
     {
+        Graphics.SetRenderTarget(_output);
         _material.SetTexture(ShaderID.SourceTexture, _source.Texture);
         _material.SetTexture(ShaderID.MaskTexture, _mask);
         _material.SetPass(0);
-        Graphics.SetRenderTarget(_output);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
     }
 

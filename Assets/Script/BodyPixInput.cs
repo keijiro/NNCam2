@@ -32,9 +32,9 @@ public sealed class BodyPixInput : MonoBehaviour
     {
         _bodyPix.ProcessImage(_source.Texture);
 
+        Graphics.SetRenderTarget(_output);
         _material.SetTexture(ShaderID.BodyPixTexture, _bodyPix.Mask);
         _material.SetPass(0);
-        Graphics.SetRenderTarget(_output);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
     }
 }
