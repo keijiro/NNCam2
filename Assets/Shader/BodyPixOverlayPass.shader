@@ -6,7 +6,6 @@ Shader "FullScreen/NNCam2/BodyPix Overlay Pass"
         {
             Name "BodyPix Overlay"
             Cull Off ZWrite Off ZTest Always
-            Blend SrcAlpha OneMinusSrcAlpha
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment FullScreenPass

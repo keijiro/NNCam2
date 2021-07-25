@@ -5,16 +5,9 @@ namespace NNCam2 {
 
 public sealed class BodyPixOverlayController : MonoBehaviour
 {
-    #region Editable attributes
+    #region Posterize effect
 
     [SerializeField, Range(0, 1)] float _dithering = 0.5f;
-    [SerializeField] Color _lineColor = Color.white;
-    [SerializeField] float _lineThreshold = 0.5f;
-    [SerializeField] float _lineContrast = 1;
-
-    #endregion
-
-    #region Public properties and methods
 
     public float BackgroundOpacity { get; set; }
     public float ForegroundOpacity { get; set; }
@@ -52,6 +45,62 @@ public sealed class BodyPixOverlayController : MonoBehaviour
         _material.SetMatrix("_PaletteFG", mfg);
     }
 
+    void UpdatePosterizeEffect()
+      => _material.SetVector
+           (ShaderID.FillParams, BackgroundOpacity, ForegroundOpacity, _dithering);
+
+    #endregion
+
+    #region Line effect
+
+    [SerializeField] Color _lineColor = Color.white;
+    [SerializeField] float _lineThreshold = 0.5f;
+    [SerializeField] float _lineContrast = 1;
+
+    void UpdateLineEffect()
+    {
+        _material.SetColor(ShaderID.LineColor, _lineColor);
+        _material.SetVector(ShaderID.LineParams, _lineThreshold, _lineContrast);
+    }
+
+    #endregion
+
+    #region Wiper effect
+
+    [SerializeField] Color _wiperColor = Color.red;
+
+    public bool RandomizeWiperDirection { get; set; }
+    public bool EnableForegroundWiper { get; set; }
+    public bool EnableBackgroundWiper { get; set; } = true;
+
+    Vector4 _wiperParams = Vector4.one;
+    Vector4 _wiperCounts;
+    int _nextWiper;
+
+    Vector4 WiperVector;
+
+    public void KickWiper()
+    {
+        _wiperParams[_nextWiper] = 0;
+        _wiperCounts[_nextWiper] += 1;
+        _nextWiper = (_nextWiper + 1) & 3;
+    }
+
+    void UpdateWiperEffect()
+    {
+        var dt = Time.deltaTime;
+        for (var i = 0; i < 4; i++) _wiperParams[i] += dt;
+
+        var config = RandomizeWiperDirection ? 1 : 0;
+        config |= EnableBackgroundWiper ? 2 : 0;
+        config |= EnableForegroundWiper ? 4 : 0;
+
+        _material.SetInteger(ShaderID.WiperConfig, config);
+        _material.SetColor(ShaderID.WiperColor, _wiperColor);
+        _material.SetVector(ShaderID.WiperParams, _wiperParams);
+        _material.SetVector(ShaderID.WiperCounts, _wiperCounts);
+    }
+
     #endregion
 
     #region MonoBehaviour implementation
@@ -75,14 +124,9 @@ public sealed class BodyPixOverlayController : MonoBehaviour
 
     void LateUpdate()
     {
-        // Fill parameter update
-        var fillParams = new Vector3(BackgroundOpacity, ForegroundOpacity, _dithering);
-        _material.SetVector("_FillParams", fillParams);
-
-        // Line parameter update
-        var lineParams = new Vector2(_lineThreshold, _lineContrast);
-        _material.SetColor("_LineColor", _lineColor);
-        _material.SetVector("_LineParams", lineParams);
+        UpdatePosterizeEffect();
+        UpdateLineEffect();
+        UpdateWiperEffect();
     }
 
     #endregion

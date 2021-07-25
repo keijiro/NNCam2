@@ -27,5 +27,5 @@ float4 Fragment(float4 position : SV_Position,
     float alpha = BodyPix_EvalSegmentation(mask);
 
     // Combined output
-    return smoothstep(0.47, 0.57, float4(head, body, arm, 1) * alpha);
+    return smoothstep(0.4, 0.5, float4(head, body, arm, 1) * alpha);
 }
