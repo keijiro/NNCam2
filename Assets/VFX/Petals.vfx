@@ -33,10 +33,10 @@ MonoBehaviour:
   - title: Source Sample
     position:
       serializedVersion: 2
-      x: 235
-      y: 609
+      x: 311
+      y: 637
       width: 556
-      height: 353
+      height: 291
     contents:
     - model: {fileID: 8926484042661614628}
       id: 0
@@ -51,9 +51,9 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 235
+    x: 311
     y: 65
-    width: 1178
+    width: 1102
     height: 2503
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 260, y: 778}
+  m_UIPosition: {x: 335, y: 807}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -995,7 +995,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 493, y: 667}
+  m_UIPosition: {x: 569, y: 695}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -1590,8 +1590,8 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 493, y: 778}
-  m_UICollapsed: 0
+  m_UIPosition: {x: 569, y: 807}
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614667}
