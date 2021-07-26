@@ -52,9 +52,14 @@ public sealed class BodyPixFilterDelay : MonoBehaviour
 
     void LateUpdate()
     {
+        // Preprocessing
+        Graphics.SetRenderTarget(_output);
+        _material.SetTexture(ShaderID.SourceTexture, _source.Texture);
+        _material.SetPass(0);
+        Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
+
         // Buffering
-        Graphics.ConvertTexture
-          (_source.Texture, 0, _history, _count % MaxHistory);
+        Graphics.ConvertTexture(_output, 0, _history, _count % MaxHistory);
 
         // Filter output
         Graphics.SetRenderTarget(_output);
@@ -63,7 +68,7 @@ public sealed class BodyPixFilterDelay : MonoBehaviour
         _material.SetInteger(ShaderID.MaxHistory, MaxHistory);
         _material.SetInteger(ShaderID.FrameIndex, _count);
         _material.SetFloat(ShaderID.DelayAmount, DelayAmount);
-        _material.SetPass(0);
+        _material.SetPass(1);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
 
         // Frame count

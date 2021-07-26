@@ -39,7 +39,7 @@ public sealed class BodyPixFilterSlitscan : MonoBehaviour
     {
         _material = new Material(_shader);
         _history = new Texture2DArray
-          (1920, 1080, MaxHistory, TextureFormat.RGB565, false, false);
+          (1920, 1080, MaxHistory, TextureFormat.RGB565, false, true);
         _history.filterMode = FilterMode.Bilinear;
         _history.wrapMode = TextureWrapMode.Clamp;
     }
@@ -52,9 +52,14 @@ public sealed class BodyPixFilterSlitscan : MonoBehaviour
 
     void LateUpdate()
     {
+        // Preprocessing
+        Graphics.SetRenderTarget(_output);
+        _material.SetTexture(ShaderID.SourceTexture, _source.Texture);
+        _material.SetPass(0);
+        Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
+
         // Buffering
-        Graphics.ConvertTexture
-          (_source.Texture, 0, _history, _count % MaxHistory);
+        Graphics.ConvertTexture(_output, 0, _history, _count % MaxHistory);
 
         // Filter output
         Graphics.SetRenderTarget(_output);
@@ -63,7 +68,7 @@ public sealed class BodyPixFilterSlitscan : MonoBehaviour
         _material.SetInteger(ShaderID.MaxHistory, MaxHistory);
         _material.SetInteger(ShaderID.FrameIndex, _count);
         _material.SetFloat(ShaderID.DelayAmount, DelayAmount);
-        _material.SetPass(0);
+        _material.SetPass(2);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
 
         // Frame count
