@@ -3,7 +3,7 @@ using Klak.TestTools;
 
 namespace NNCam2 {
 
-sealed class BodyPixFilterThru : MonoBehaviour
+public sealed class BodyPixFilterThru : MonoBehaviour
 {
     #region Editable attributes
 
