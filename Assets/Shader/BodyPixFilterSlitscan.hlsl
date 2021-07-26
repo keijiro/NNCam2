@@ -2,10 +2,11 @@
 #include "Packages/jp.keijiro.bodypix/Shader/Common.hlsl"
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 
-#define HISTORY 32
+#define HISTORY 128
 
 TEXTURE2D_ARRAY(_BufferTexture);
 SAMPLER(sampler_BufferTexture);
+sampler2D _SourceTexture;
 sampler2D _MaskTexture;
 uint _FrameCount;
 float _DelayAmount;
@@ -19,21 +20,14 @@ float3 GetHistory(float2 uv, uint offset)
 float4 Fragment(float4 position : SV_Position,
                 float2 texCoord : TEXCOORD) : SV_Target
 {
-    float3 acc = 0;
+    float delay = texCoord.x * _DelayAmount;
+    uint offset = (uint)delay;
+    float3 p1 = GetHistory(texCoord, offset + 0);
+    float3 p2 = GetHistory(texCoord, offset + 1);
+    float3 scan = lerp(p1, p2, frac(delay));
 
-    for (uint i = 0; i < 8; i++)
-    {
-        // Source with monochrome + contrast
-        float3 c = GetHistory(texCoord, i * _DelayAmount);
-
-        // Hue
-        float h = i / 8.0 * 6 - 2;
-        c *= saturate(float3(abs(h - 1) - 1, 2 - abs(h), 2 - abs(h - 2)));
-
-        // Accumulation
-        acc += c / 4;
-    }
-
+    float4 source = tex2D(_SourceTexture, texCoord);
     float4 mask = tex2D(_MaskTexture, texCoord);
-    return float4(acc, mask.a);
+
+    return float4(scan, mask.a);
 }

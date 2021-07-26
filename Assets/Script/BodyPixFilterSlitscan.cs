@@ -3,7 +3,7 @@ using Klak.TestTools;
 
 namespace NNCam2 {
 
-public sealed class BodyPixFilterDelay : MonoBehaviour
+public sealed class BodyPixFilterSlitscan : MonoBehaviour
 {
     #region Editable attributes
 
@@ -22,7 +22,7 @@ public sealed class BodyPixFilterDelay : MonoBehaviour
 
     #region Private members
 
-    const int History = 32;
+    const int History = 128;
 
     Material _material;
     Texture2DArray _buffer;
@@ -31,6 +31,9 @@ public sealed class BodyPixFilterDelay : MonoBehaviour
     #endregion
 
     #region MonoBehaviour implementation
+
+    void OnEnable()
+      => _count = 0;
 
     void Start()
     {
@@ -54,10 +57,11 @@ public sealed class BodyPixFilterDelay : MonoBehaviour
 
         // Filter output
         Graphics.SetRenderTarget(_output);
+        _material.SetTexture(ShaderID.SourceTexture, _source.Texture);
         _material.SetTexture(ShaderID.BufferTexture, _buffer);
         _material.SetTexture(ShaderID.MaskTexture, _mask);
         _material.SetInteger(ShaderID.FrameCount, _count);
-        _material.SetFloat(ShaderID.DelayAmount, DelayAmount * 3.99f);
+        _material.SetFloat(ShaderID.DelayAmount, DelayAmount * (History - 1));
         _material.SetPass(0);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
 

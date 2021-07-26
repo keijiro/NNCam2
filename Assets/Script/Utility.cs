@@ -5,6 +5,7 @@ namespace NNCam2 {
 static class ShaderID
 {
     public static readonly int BodyPixTexture = Shader.PropertyToID("_BodyPixTexture");
+    public static readonly int BufferCount = Shader.PropertyToID("_BufferCount");
     public static readonly int BufferTexture = Shader.PropertyToID("_BufferTexture");
     public static readonly int DelayAmount = Shader.PropertyToID("_DelayAmount");
     public static readonly int FeedbackTexture = Shader.PropertyToID("_FeedbackTexture");
