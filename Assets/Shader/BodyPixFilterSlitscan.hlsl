@@ -22,6 +22,6 @@ float4 Fragment(float4 position : SV_Position,
     uint offset = (uint)delay;
     float3 p1 = GetHistory(texCoord, offset);
     float3 p2 = GetHistory(texCoord, offset + 1);
-    float3 scan = lerp(p1, p2, frac(delay));
+    float3 scan = lerp(p1, p2, smoothstep(0, 1, frac(delay)));
     return float4(scan, tex2D(_MaskTexture, texCoord).a);
 }
