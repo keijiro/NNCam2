@@ -5,17 +5,17 @@ namespace NNCam2 {
 static class ShaderID
 {
     public static readonly int BodyPixTexture = Shader.PropertyToID("_BodyPixTexture");
-    public static readonly int BufferCount = Shader.PropertyToID("_BufferCount");
-    public static readonly int BufferTexture = Shader.PropertyToID("_BufferTexture");
     public static readonly int DelayAmount = Shader.PropertyToID("_DelayAmount");
     public static readonly int FeedbackTexture = Shader.PropertyToID("_FeedbackTexture");
     public static readonly int FeedbackParams = Shader.PropertyToID("_FeedbackParams");
     public static readonly int FillParams = Shader.PropertyToID("_FillParams");
-    public static readonly int FrameCount = Shader.PropertyToID("_FrameCount");
+    public static readonly int FrameIndex = Shader.PropertyToID("_FrameIndex");
+    public static readonly int HistoryTexture = Shader.PropertyToID("_HistoryTexture");
     public static readonly int LineColor = Shader.PropertyToID("_LineColor");
     public static readonly int LineParams = Shader.PropertyToID("_LineParams");
     public static readonly int MainTexture = Shader.PropertyToID("_MainTexture");
     public static readonly int MaskTexture = Shader.PropertyToID("_MaskTexture");
+    public static readonly int MaxHistory = Shader.PropertyToID("_MaxHistory");
     public static readonly int NoiseParams = Shader.PropertyToID("_NoiseParams");
     public static readonly int Opacity = Shader.PropertyToID("_Opacity");
     public static readonly int SourceTexture = Shader.PropertyToID("_SourceTexture");

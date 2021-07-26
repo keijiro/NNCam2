@@ -22,10 +22,10 @@ public sealed class BodyPixFilterSlitscan : MonoBehaviour
 
     #region Private members
 
-    const int History = 128;
+    const int MaxHistory = 128;
 
     Material _material;
-    Texture2DArray _buffer;
+    Texture2DArray _history;
     int _count;
 
     #endregion
@@ -38,30 +38,31 @@ public sealed class BodyPixFilterSlitscan : MonoBehaviour
     void Start()
     {
         _material = new Material(_shader);
-        _buffer = new Texture2DArray
-          (1920, 1080, History, TextureFormat.RGB565, false);
-        _buffer.filterMode = FilterMode.Bilinear;
-        _buffer.wrapMode = TextureWrapMode.Clamp;
+        _history = new Texture2DArray
+          (1920, 1080, MaxHistory, TextureFormat.RGB565, false, false);
+        _history.filterMode = FilterMode.Bilinear;
+        _history.wrapMode = TextureWrapMode.Clamp;
     }
 
     void OnDestroy()
     {
         Destroy(_material);
-        Destroy(_buffer);
+        Destroy(_history);
     }
 
     void LateUpdate()
     {
         // Buffering
-        Graphics.ConvertTexture(_source.Texture, 0, _buffer, _count % History);
+        Graphics.ConvertTexture
+          (_source.Texture, 0, _history, _count % MaxHistory);
 
         // Filter output
         Graphics.SetRenderTarget(_output);
-        _material.SetTexture(ShaderID.SourceTexture, _source.Texture);
-        _material.SetTexture(ShaderID.BufferTexture, _buffer);
+        _material.SetTexture(ShaderID.HistoryTexture, _history);
         _material.SetTexture(ShaderID.MaskTexture, _mask);
-        _material.SetInteger(ShaderID.FrameCount, _count);
-        _material.SetFloat(ShaderID.DelayAmount, DelayAmount * (History - 1));
+        _material.SetInteger(ShaderID.MaxHistory, MaxHistory);
+        _material.SetInteger(ShaderID.FrameIndex, _count);
+        _material.SetFloat(ShaderID.DelayAmount, DelayAmount);
         _material.SetPass(0);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
 
