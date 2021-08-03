@@ -10,3 +10,9 @@ NNCam2
 **NNCam2** is an experimental project that uses the BodyPix ML model
 (human body segmentation filter + pose estimation) for real-time visual effects.
 
+System requirements
+-------------------
+
+- Unity 2021.2
+- HDRP 12.0
+- UVC compatible video capture device (webcam)
