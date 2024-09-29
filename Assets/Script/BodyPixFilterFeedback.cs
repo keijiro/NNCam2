@@ -16,37 +16,22 @@ public sealed class BodyPixFilterFeedback : MonoBehaviour
 
     #region Effect parameters
 
-    [SerializeField] float _feedbackLength = 3;
-    [SerializeField] float _feedbackDecay = 1;
-    [SerializeField] float _noiseFrequency = 1;
-    [SerializeField] float _noiseSpeed = 1;
-    [SerializeField] float _noiseAmount = 1;
-
-    public float FeedbackLength
-      { get => _feedbackLength; set => _feedbackLength = value; }
-
-    public float FeedbackDecay
-      { get => _feedbackDecay; set => _feedbackDecay = value; }
-
-    public float NoiseFrequency
-      { get => _noiseFrequency; set => _noiseFrequency = value; }
-
-    public float NoiseSpeed
-      { get => _noiseSpeed; set => _noiseSpeed = value; }
-
-    public float NoiseAmount
-      { get => _noiseAmount; set => _noiseAmount = value; }
+    [field:SerializeField] public float FeedbackLength { get; set; } = 3;
+    [field:SerializeField] public float FeedbackDecay { get; set; } = 1;
+    [field:SerializeField] public float NoiseFrequency { get; set; } = 1;
+    [field:SerializeField] public float NoiseSpeed { get; set; } = 1;
+    [field:SerializeField] public float NoiseAmount { get; set; } = 1;
 
     #endregion
 
     #region Private members
 
     Vector4 FeedbackParamsVector
-      => new Vector4(_feedbackLength, _feedbackDecay / 100,
+      => new Vector4(FeedbackLength, FeedbackDecay / 100,
                      (float)_buffer.rt1.width / _buffer.rt1.height, Time.time);
 
     Vector3 NoiseParamsVector
-      => new Vector3(_noiseFrequency, _noiseSpeed, _noiseAmount / 1000);
+      => new Vector3(NoiseFrequency, NoiseSpeed, NoiseAmount / 1000);
 
     (RenderTexture rt1, RenderTexture rt2) _buffer;
 

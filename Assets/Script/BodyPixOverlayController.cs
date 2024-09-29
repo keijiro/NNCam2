@@ -9,8 +9,8 @@ public sealed class BodyPixOverlayController : MonoBehaviour
 
     [SerializeField, Range(0, 1)] float _dithering = 0.5f;
 
-    public float BackgroundOpacity { get; set; }
-    public float ForegroundOpacity { get; set; }
+    [field:SerializeField] public float BackgroundOpacity { get; set; }
+    [field:SerializeField] public float ForegroundOpacity { get; set; }
 
     public void ShufflePalette()
     {
@@ -69,9 +69,9 @@ public sealed class BodyPixOverlayController : MonoBehaviour
 
     [SerializeField] Color _wiperColor = Color.red;
 
-    public bool RandomizeWiperDirection { get; set; }
-    public bool EnableForegroundWiper { get; set; }
-    public bool EnableBackgroundWiper { get; set; } = true;
+    [field:SerializeField] public bool RandomizeWiperDirection { get; set; }
+    [field:SerializeField] public bool EnableForegroundWiper { get; set; }
+    [field:SerializeField] public bool EnableBackgroundWiper { get; set; } = true;
 
     Vector4 _wiperParams = Vector4.one;
     Vector4 _wiperCounts;

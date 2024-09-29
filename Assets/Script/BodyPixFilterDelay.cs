@@ -16,7 +16,7 @@ public sealed class BodyPixFilterDelay : MonoBehaviour
 
     #region Public property
 
-    public float DelayAmount { get; set; }
+    [field:SerializeField] public float DelayAmount { get; set; }
 
     #endregion
 

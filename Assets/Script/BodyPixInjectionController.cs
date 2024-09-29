@@ -7,8 +7,8 @@ public sealed class BodyPixInjectionController : MonoBehaviour
 {
     #region Public properties
 
-    public float BackgroundOpacity { get; set; } = 1;
-    public float ForegroundOpacity { get; set; } = 1;
+    [field:SerializeField] public float BackgroundOpacity { get; set; } = 1;
+    [field:SerializeField] public float ForegroundOpacity { get; set; } = 1;
 
     #endregion
 
