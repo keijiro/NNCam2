@@ -74,7 +74,7 @@ public sealed class BodyPixFilterFeedback : MonoBehaviour
     {
         // Effector shader
         Graphics.SetRenderTarget(_buffer.rt2);
-        _material.SetTexture(ShaderID.SourceTexture, _source.Texture);
+        _material.SetTexture(ShaderID.SourceTexture, _source.AsTexture);
         _material.SetTexture(ShaderID.FeedbackTexture, _buffer.rt1);
         _material.SetTexture(ShaderID.MaskTexture, _mask);
         _material.SetVector(ShaderID.FeedbackParams, FeedbackParamsVector);

@@ -1,5 +1,5 @@
 #include "Common.hlsl"
-#include "Packages/jp.keijiro.bodypix/Shader/Common.hlsl"
+#include "Packages/jp.keijiro.bodypix/Shaders/Common.hlsl"
 #include "Packages/jp.keijiro.noiseshader/Shader/SimplexNoise3D.hlsl"
 
 sampler2D _SourceTexture;

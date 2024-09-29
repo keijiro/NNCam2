@@ -1,5 +1,5 @@
 #include "Common.hlsl"
-#include "Packages/jp.keijiro.bodypix/Shader/Common.hlsl"
+#include "Packages/jp.keijiro.bodypix/Shaders/Common.hlsl"
 
 sampler2D _SourceTexture;
 sampler2D _MaskTexture;

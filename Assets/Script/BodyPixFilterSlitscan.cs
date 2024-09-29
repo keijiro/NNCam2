@@ -54,7 +54,7 @@ public sealed class BodyPixFilterSlitscan : MonoBehaviour
     {
         // Preprocessing
         Graphics.SetRenderTarget(_output);
-        _material.SetTexture(ShaderID.SourceTexture, _source.Texture);
+        _material.SetTexture(ShaderID.SourceTexture, _source.AsTexture);
         _material.SetPass(0);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
 

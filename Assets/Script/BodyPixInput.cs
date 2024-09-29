@@ -11,29 +11,29 @@ public sealed class BodyPixInput : MonoBehaviour
     [SerializeField] Shader _shader = null;
     [SerializeField] RenderTexture _output = null;
 
-    public GraphicsBuffer KeypointBuffer => _bodyPix.Keypoints;
+    public GraphicsBuffer KeypointBuffer => _detector.KeypointBuffer;
 
-    BodyPixRuntime _bodyPix;
+    BodyDetector _detector;
     Material _material;
 
     void Start()
     {
-        _bodyPix = new BodyPixRuntime(_resources, 512, 384);
+        _detector = new BodyDetector(_resources, 512, 384);
         _material = new Material(_shader);
     }
 
     void OnDestroy()
     {
-        _bodyPix.Dispose();
+        _detector.Dispose();
         Destroy(_material);
     }
 
     void LateUpdate()
     {
-        _bodyPix.ProcessImage(_source.Texture);
+        _detector.ProcessImage(_source.AsTexture);
 
         Graphics.SetRenderTarget(_output);
-        _material.SetTexture(ShaderID.BodyPixTexture, _bodyPix.Mask);
+        _material.SetTexture(ShaderID.BodyPixTexture, _detector.MaskTexture);
         _material.SetPass(0);
         Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
     }

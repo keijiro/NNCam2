@@ -1,5 +1,5 @@
 #include "Common.hlsl"
-#include "Packages/jp.keijiro.bodypix/Shader/Common.hlsl"
+#include "Packages/jp.keijiro.bodypix/Shaders/Common.hlsl"
 
 texture2D _BodyPixTexture;
 float4 _BodyPixTexture_TexelSize;
