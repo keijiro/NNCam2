@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781cc897cf8675041a751163b51f97dd, type: 3}
-  m_Name: HDRenderPipelineGlobalSettings
+  m_Name: GlobalSettings
   m_EditorClassIdentifier: 
   m_CustomPostProcessOrdersSettings:
     m_Version: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
       type: {class: LookDevVolumeProfileSettings, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
         m_Version: 0
-        m_VolumeProfile: {fileID: 11400000, guid: 2e0c4a3143b65496ea94cd607bbdf054, type: 2}
+        m_VolumeProfile: {fileID: 11400000, guid: 2f36c239104e44cca9112cb2cc981d02, type: 2}
     - rid: 7746681301554954244
       type: {class: WaterSystemRuntimeResources, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
