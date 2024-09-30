@@ -13,6 +13,6 @@ NNCam2
 System requirements
 -------------------
 
-- Unity 2021.2
-- HDRP 12.0
+- Unity 6
+- HDRP 17.0
 - UVC compatible video capture device (webcam)
